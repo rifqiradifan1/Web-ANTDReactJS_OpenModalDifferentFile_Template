@@ -1,35 +1,29 @@
 // Import React's Component
-import React, { useState } from "react";
+import { React, useEffect, useState } from "react";
 
 // Import Ant Design Components
 import { Button, Col, Row, Modal } from "antd";
 
 // CODE
-export default function DashboardModal() {
-  // Modal
+export default function DashboardModal({ openModal, is_closeModal }) {
+  // State Management
   const [open, setOpen] = useState(false);
 
-  // Modal Open Set State
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // USE EFFECT
+  useEffect(() => {
+    setOpen(openModal);
+  }, [openModal]);
 
   // CLOSE MODAL
   const handleCancel = () => {
     setOpen(false);
+    is_closeModal(false);
   };
 
   return (
     <>
-      <Col span={24}>
-        <Row justify="center">
-          <Button className="modal-btn" type="primary" onClick={handleOpen}>
-            Open Modal
-          </Button>
-        </Row>
-      </Col>
       <Modal
-        title="Open Modal Same File"
+        title="Open Modal Different File"
         centered
         open={open}
         onCancel={handleCancel}
